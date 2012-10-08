@@ -1,0 +1,120 @@
+body {
+  font-family: Helvetica;
+}
+.scheduler {
+  position: relative;
+}
+.scheduler * {
+  margin: 0;
+  padding: 0;
+}
+.scheduler ul {
+  list-style: none;
+}
+.scheduler .sc-event-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.scheduler .sc-event-time {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  vertical-align: top;
+  text-align: center;
+}
+.scheduler .sc-event {
+  position: relative;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.scheduler.is-dayview .sc-event-time {
+  border-right: 1px solid #ccc;
+  width: 40px;
+  padding: 5px 2px;
+}
+.scheduler.is-dayview .sc-event {
+  margin-top: -1px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.scheduler.is-dayview .sc-event-content {
+  margin-left: 50px;
+  display: inline-block;
+}
+.scheduler.is-dayview .sc-time-axis-row {
+  display: none;
+}
+.scheduler.is-weekview {
+  padding-left: 50px;
+}
+.scheduler.is-weekview .sc-event-tuesday {
+  margin-left: 20%;
+}
+.scheduler.is-weekview .sc-event-wednesday {
+  margin-left: 40%;
+}
+.scheduler.is-weekview .sc-event-thursday {
+  margin-left: 60%;
+}
+.scheduler.is-weekview .sc-event-friday {
+  margin-left: 80%;
+}
+.scheduler.is-weekview .sc-event-time {
+  font-size: 50%;
+  right: 0;
+  left: 0;
+  padding: 10px;
+}
+.scheduler.is-weekview .sc-event-label {
+  display: none;
+}
+.scheduler.is-weekview .sc-event {
+  width: 19%;
+  text-align: center;
+  background: #f1f1f1;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 0;
+}
+.scheduler.is-weekview .sc-event-content {
+  margin: 10px 0;
+}
+.scheduler.is-weekview .sc-event-time-end {
+  display: block;
+  right: 5px;
+  bottom: 5px;
+  text-align: right;
+  position: absolute;
+}
+.scheduler.is-weekview .sc-event-time-start {
+  display: block;
+  text-align: left;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.scheduler .sc-event-time-end {
+  display: none;
+}
+.scheduler .sc-event-extra p {
+  margin: 0;
+}
+.scheduler .sc-time-axis {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.scheduler .sc-time-axis-row {
+  box-sizing: border-box;
+  border-bottom: 1px solid #ccc;
+}
+.scheduler .sc-event-extra {
+  margin-top: 10px;
+  display: none;
+}
+.scheduler .sc-event.active .sc-event-extra {
+  display: block;
+}
