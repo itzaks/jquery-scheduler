@@ -3,6 +3,10 @@ body {
 }
 .scheduler {
   position: relative;
+  margin-top: 50px;
+}
+.scheduler .btn-change-view {
+  margin-top: -20px;
 }
 .scheduler * {
   margin: 0;
@@ -29,6 +33,11 @@ body {
   box-sizing: border-box;
   cursor: pointer;
 }
+.scheduler .sc-event-label {
+  font-size: 90%;
+  color: #333;
+  margin: 10px 0 5px;
+}
 .scheduler.is-dayview .sc-event-time {
   border-right: 1px solid #ccc;
   width: 40px;
@@ -46,7 +55,7 @@ body {
 .scheduler.is-dayview .sc-time-axis-row {
   display: none;
 }
-.scheduler.is-weekview {
+.scheduler.is-weekview .sc-content {
   padding-left: 50px;
 }
 .scheduler.is-weekview .sc-event-tuesday {

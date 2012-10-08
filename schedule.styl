@@ -3,6 +3,10 @@ body
 
 .scheduler
 	position: relative
+	margin-top: 50px
+
+	.btn-change-view 
+		margin-top: -20px
 
 	*
 		margin: 0
@@ -29,6 +33,12 @@ body
 		box-sizing: border-box
 		cursor: pointer
 
+
+	.sc-event-label
+		font-size: 90%
+		color: #333
+		margin: 10px 0 5px
+
 	&.is-dayview
 		.sc-event-time
 			border-right: 1px solid #ccc
@@ -49,7 +59,8 @@ body
 			display: none
 
 	&.is-weekview
-		padding-left: 50px
+		.sc-content
+			padding-left: 50px
 
 		timePadding = 5px
 

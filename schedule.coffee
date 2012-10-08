@@ -8,7 +8,7 @@ events =
       title: "Matematik Klass A"
       description: "etc. etc"
       start: new Date("2012-10-01 13:45")
-      end: new Date("2012-10-02 14:00")
+      end: new Date("2012-10-02 14:45")
     ,  
       title: "Matematik"
       description: "Mats Eriksson"
@@ -21,7 +21,7 @@ events =
       end: new Date("2012-10-02 17:00")
   ]
   tuesday: [
-      title: "Lol C"
+      title: "Historia C"
       description: "etc. etc"
       start: new Date("2012-10-01 08:00")
       end: new Date("2012-10-01 09:20")
@@ -37,7 +37,7 @@ events =
       end: new Date("2012-10-02 17:00")
   ]
   wednesday: [
-      title: "Lol C"
+      title: "Historia C"
       description: "etc. etc"
       start: new Date("2012-10-01 08:00")
       end: new Date("2012-10-01 09:20")
@@ -48,9 +48,9 @@ events =
       end: new Date("2012-10-02 17:00")
   ]
   thursday: [
-      title: "Lol C"
+      title: "Historia C"
       description: "etc. etc"
-      start: new Date("2012-10-01 08:16")
+      start: new Date("2012-10-01 08:10")
       end: new Date("2012-10-01 09:20")
     ,
       title: "Matematik"
@@ -59,7 +59,7 @@ events =
       end: new Date("2012-10-02 17:00")
   ]
   friday: [
-      title: "Cool man C"
+      title: "Religion AB"
       description: "etc. etc"
       start: new Date("2012-10-01 08:00")
       end: new Date("2012-10-01 09:20")
@@ -113,7 +113,12 @@ $(->
             <ul class=sc-event-list></ul>
           </div>
         ")
+        $this.prepend("<button class=btn-change-view>Toggle view</button>")
+        $this.on "click", ".btn-change-view", ->
+          view = if $(this).data("view") is "day" then "week" else "day"
 
+          $(this).data("view", view)
+          $this.scheduler("setViewLayout", view)
 
         $ul = $this.find(".sc-event-list")
         $ul.on "click", "li", ->
@@ -151,9 +156,10 @@ $(->
         $this.scheduler("setViewLayout", "week")
 
     #setViewLayout
-    setViewLayout : (view = day) ->
+    setViewLayout : (view = "day") ->
       settings = this.data("sc-settings")
-      this.scheduler("generateTimeAxis")
+
+      unless this.data("sc-time-axis") then this.scheduler("generateTimeAxis")
 
       switch view
         when "week"
@@ -189,6 +195,8 @@ $(->
     #generate sidemenu timeaxis
     generateTimeAxis : () ->
       settings = this.data("sc-settings")
+
+      this.data('sc-time-axis', true)
 
       console.log settings
 

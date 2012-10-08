@@ -12,7 +12,7 @@ events = {
       title: "Matematik Klass A",
       description: "etc. etc",
       start: new Date("2012-10-01 13:45"),
-      end: new Date("2012-10-02 14:00")
+      end: new Date("2012-10-02 14:45")
     }, {
       title: "Matematik",
       description: "Mats Eriksson",
@@ -27,7 +27,7 @@ events = {
   ],
   tuesday: [
     {
-      title: "Lol C",
+      title: "Historia C",
       description: "etc. etc",
       start: new Date("2012-10-01 08:00"),
       end: new Date("2012-10-01 09:20")
@@ -45,7 +45,7 @@ events = {
   ],
   wednesday: [
     {
-      title: "Lol C",
+      title: "Historia C",
       description: "etc. etc",
       start: new Date("2012-10-01 08:00"),
       end: new Date("2012-10-01 09:20")
@@ -58,9 +58,9 @@ events = {
   ],
   thursday: [
     {
-      title: "Lol C",
+      title: "Historia C",
       description: "etc. etc",
-      start: new Date("2012-10-01 08:16"),
+      start: new Date("2012-10-01 08:10"),
       end: new Date("2012-10-01 09:20")
     }, {
       title: "Matematik",
@@ -71,7 +71,7 @@ events = {
   ],
   friday: [
     {
-      title: "Cool man C",
+      title: "Religion AB",
       description: "etc. etc",
       start: new Date("2012-10-01 08:00"),
       end: new Date("2012-10-01 09:20")
@@ -127,6 +127,13 @@ $(function() {
         $this = $(this);
         $this.data("sc-settings", settings);
         $this.addClass("scheduler").html("          <div class=sc-content>            <ul class=sc-event-list></ul>          </div>        ");
+        $this.prepend("<button class=btn-change-view>Toggle view</button>");
+        $this.on("click", ".btn-change-view", function() {
+          var view;
+          view = $(this).data("view") === "day" ? "week" : "day";
+          $(this).data("view", view);
+          return $this.scheduler("setViewLayout", view);
+        });
         $ul = $this.find(".sc-event-list");
         $ul.on("click", "li", function() {
           return $(this).toggleClass("active");
@@ -152,10 +159,12 @@ $(function() {
     setViewLayout: function(view) {
       var settings;
       if (view == null) {
-        view = day;
+        view = "day";
       }
       settings = this.data("sc-settings");
-      this.scheduler("generateTimeAxis");
+      if (!this.data("sc-time-axis")) {
+        this.scheduler("generateTimeAxis");
+      }
       switch (view) {
         case "week":
           return this.removeClass("is-dayview").addClass("is-weekview").find(".sc-event").each(function() {
@@ -184,6 +193,7 @@ $(function() {
     generateTimeAxis: function() {
       var currentRow, dom, endTime, hour, minute, numberOfRows, rowHeight, settings, startTime, timespan;
       settings = this.data("sc-settings");
+      this.data('sc-time-axis', true);
       console.log(settings);
       endTime = settings.endTime * 60;
       startTime = settings.startTime * 60;
