@@ -82,6 +82,9 @@ body {
   left: 0;
   padding: 10px;
 }
+.scheduler.is-weekview .sc-event-list {
+  position: relative;
+}
 .scheduler.is-weekview .sc-event-label {
   display: none;
 }
