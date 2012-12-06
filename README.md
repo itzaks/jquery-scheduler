@@ -1,7 +1,6 @@
 #jQuery Scheduler
 
-???¿¿¿ READ
-!!!¡¡¡ ME
+Simple schedule with vertical and horizontal format.
 
 ##Example
 	var events = [{
