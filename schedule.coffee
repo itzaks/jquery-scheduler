@@ -48,7 +48,7 @@
 
         $ul = $this.find(".sc-event-list")
         $ul.on "click", "li", ->
-          $(this).toggleClass("active")
+          $(this).toggleClass("is-active")
 
         $this.scheduler("appendEvents", settings.events)
         $this.scheduler("setViewLayout", "day")
