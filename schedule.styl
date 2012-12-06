@@ -3,10 +3,9 @@ body
 
 .scheduler
 	position: relative
-	margin-top: 50px
 
 	.btn-change-view 
-		margin-top: -20px
+		margin-top: 20px
 
 	*
 		margin: 0
@@ -33,7 +32,6 @@ body
 		box-sizing: border-box
 		cursor: pointer
 
-
 	.sc-event-label
 		font-size: 90%
 		color: #333
@@ -43,13 +41,19 @@ body
 		.sc-event-time
 			border-right: 1px solid #ccc
 			width: 40px
-			padding: 5px 2px
+			padding: 4px
 
 		.sc-event
 			margin-top: -1px
 			border: 1px solid #ccc
 			padding: 10px
 
+			&.sc-has-description
+				background: url("../comment.jpg") no-repeat 99% 50%
+
+		.sc-event-time-end 
+			font-size: 75%
+			color: #9C9C9C
 
 		.sc-event-content 
 			margin-left: 50px
@@ -107,9 +111,6 @@ body
 			position: absolute
 			top: timePadding
 			left: timePadding
-
-	.sc-event-time-end 
-		display: none
 
 	.sc-event-extra p
 		margin: 0
