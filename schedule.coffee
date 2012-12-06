@@ -36,16 +36,6 @@
           </div>
         ")
 
-        ###
-        $this.append("<button class=btn-change-view>Lolbutton</button>")
-        $this.on "click", ".btn-change-view", ->
-          view = if $(this).data("view") is "day" then "week" else "day"
-
-          $(this).data("view", view)
-          $this.scheduler("setViewLayout", view)
-          $this.scheduler("appendEvents", settings.events)
-        ###
-
         $ul = $this.find(".sc-event-list")
         $ul.on "click", "li", ->
           $(this).toggleClass("active")
@@ -64,6 +54,7 @@
         dayName = mapDayName(date.getDay())
         dayDate = date.getDate()
         monthName = date.getMonth()
+        dayNameLower = dayName.toLowerCase()
 
         label = day.label or "#{dayName} - #{dayDate}/#{monthName}" 
 
@@ -77,7 +68,7 @@
           descriptionClass = if description then "sc-has-description" else ""
 
           $event = $("
-            <li class='sc-event #{settings.lectionClass} sc-event-#{index} #{descriptionClass}'>
+            <li class='sc-event #{settings.lectionClass} sc-event-#{dayNameLower} #{descriptionClass}'>
               <div class=sc-event-time>
                 <div class='sc-event-time-start'>#{startDate}</div>
                 <div class='sc-event-time-end'>#{endDate}</div>
@@ -102,34 +93,32 @@
 
       switch view
         when "week"
-          this.removeClass("is-dayview").addClass("is-weekview").find(".sc-event").each(->
-            $this = $(this)
-            event = $this.data("sc-event")
+          this
+            .removeClass("is-dayview")
+            .addClass("is-weekview")
+            .find(".sc-event").each ->
+              $this = $(this)
+              event = $this.data("sc-event")
 
-            eventStart = event.start.getFullMinutes()
-            eventEnd = event.end.getFullMinutes()
+              eventStart = event.start.getFullMinutes()
+              eventEnd = event.end.getFullMinutes()
 
-            dayStart = settings.startTime * 60
+              dayStart = settings.startTime * 60
 
-            console.log dayStart, eventStart
+              #get top placement (schedule start time - event start time) * minute to pixel-ratio
+              topPlacement = (eventStart - dayStart) * settings.pixelRatio
 
-            #get top placement (schedule start time - event start time) * minute to pixel-ratio
-            topPlacement = (eventStart - dayStart) * settings.pixelRatio
-
-            $this.css(
-              top: topPlacement
-              height: (eventEnd - eventStart) * settings.pixelRatio
-            )
-          )
+              $this.css
+                top: topPlacement
+                height: (eventEnd - eventStart) * settings.pixelRatio
         else 
-          this.removeClass("is-weekview").addClass("is-dayview").find(".sc-event").each(->
-            $(this).css(
-              top: 0
-              height: "auto"
-            )
-          )
-
-
+          this
+            .removeClass("is-weekview")
+            .addClass("is-dayview")
+            .find(".sc-event").each ->
+              $(this).css
+                top: 0
+                height: "auto"
 
     #generate sidemenu timeaxis
     generateTimeAxis : () ->
@@ -172,7 +161,7 @@
 
   mapDayName = (day) ->
     days = [
-      "Mondag",
+      "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",

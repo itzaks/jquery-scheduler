@@ -107,14 +107,23 @@
 			]
 
 			$(document).ready(function() {
-				$("#schedule").scheduler({
+				var $schedule = $("#schedule").scheduler({
 					events: events
 				});
+
+				$("body").on("click", ".btn-change-view", function() {
+      		var view = ($(this).data("view") == "week" ? "day" : "week")
+          $(this).data("view", view)
+
+          $schedule.scheduler("setViewLayout", view)
+          //$schedule.scheduler("appendEvents", settings.events)
+      	});
 			});
 
 		</script>
 	</head>
 	<body>
+		<button class=btn-change-view>Switch view</button>
 		<div id="schedule"></div>
 	</body>
 </html>
