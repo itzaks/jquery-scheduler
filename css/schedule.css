@@ -1,25 +1,17 @@
-body {
-  font-family: Helvetica;
+.schedule,
+[class=*"sc-"] {
+  margin: 0;
+  padding: 0;
 }
 .scheduler {
   position: relative;
 }
-.scheduler .btn-change-view {
-  margin-top: 20px;
-}
-.scheduler * {
-  margin: 0;
-  padding: 0;
-}
 .scheduler ul {
   list-style: none;
-}
-.scheduler .sc-event-list {
-  list-style: none;
   margin: 0;
   padding: 0;
 }
-.scheduler .sc-event-time {
+.sc-event-time {
   position: absolute;
   top: 0;
   left: 0;
@@ -27,68 +19,118 @@ body {
   vertical-align: top;
   text-align: center;
 }
-.scheduler .sc-event {
+.sc-event {
   position: relative;
   box-sizing: border-box;
   cursor: pointer;
 }
-.scheduler .sc-event-label {
+.sc-event-label {
   font-size: 90%;
   color: #333;
   margin: 10px 0 5px;
 }
-.scheduler.is-dayview .sc-event-time {
+.is-dayview .sc-event-time {
   border-right: 1px solid #ccc;
   width: 40px;
   padding: 4px;
 }
-.scheduler.is-dayview .sc-event {
+.is-dayview .sc-event {
   margin-top: -1px;
   border: 1px solid #ccc;
   padding: 10px;
 }
-.scheduler.is-dayview .sc-event.sc-has-description {
+.is-dayview .sc-event.sc-has-description {
   background: url("../comment.jpg") no-repeat 99% 50%;
 }
-.scheduler.is-dayview .sc-event-time-end {
+.is-dayview .sc-event-time-end {
   font-size: 75%;
   color: #9c9c9c;
 }
-.scheduler.is-dayview .sc-event-content {
+.is-dayview .sc-event-content {
   margin-left: 50px;
   display: inline-block;
 }
-.scheduler.is-dayview .sc-time-axis-row {
+.is-dayview .sc-time-axis-row {
   display: none;
 }
-.scheduler.is-weekview .sc-content {
+.is-weekview .sc-content {
   padding-left: 50px;
 }
-.scheduler.is-weekview .sc-event-tuesday {
+.is-weekview .sc-event-tuesday {
   margin-left: 20%;
 }
-.scheduler.is-weekview .sc-event-wednesday {
+.is-weekview .sc-event-wednesday {
   margin-left: 40%;
 }
-.scheduler.is-weekview .sc-event-thursday {
+.is-weekview .sc-event-thursday {
   margin-left: 60%;
 }
-.scheduler.is-weekview .sc-event-friday {
+.is-weekview .sc-event-friday {
   margin-left: 80%;
 }
-.scheduler.is-weekview .sc-event-time {
+.is-weekview .sc-event-time {
   font-size: 50%;
   right: 0;
   left: 0;
   padding: 10px;
 }
-.scheduler.is-weekview .sc-event-list {
-  position: relative;
+.is-weekview .sc-event-label {
+  font-size: 90%;
+  color: #333;
+  margin: 10px 0 5px;
 }
-.scheduler.is-weekview .sc-event-label {
+.is-weekview.is-dayview .sc-event-time {
+  border-right: 1px solid #ccc;
+  width: 40px;
+  padding: 4px;
+}
+.is-weekview.is-dayview .sc-event {
+  margin-top: -1px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+.is-weekview.is-dayview .sc-event.sc-has-description {
+  background: url("../comment.jpg") no-repeat 99% 50%;
+}
+.is-weekview.is-dayview .sc-event-time-end {
+  font-size: 75%;
+  color: #9c9c9c;
+}
+.is-weekview.is-dayview .sc-event-content {
+  margin-left: 50px;
+  display: inline-block;
+}
+.is-weekview.is-dayview .sc-time-axis-row {
   display: none;
 }
-.scheduler.is-weekview .sc-event {
+.is-weekview.is-weekview .sc-content {
+  padding-left: 50px;
+}
+.is-weekview.is-weekview .sc-event-tuesday {
+  margin-left: 20%;
+}
+.is-weekview.is-weekview .sc-event-wednesday {
+  margin-left: 40%;
+}
+.is-weekview.is-weekview .sc-event-thursday {
+  margin-left: 60%;
+}
+.is-weekview.is-weekview .sc-event-friday {
+  margin-left: 80%;
+}
+.is-weekview.is-weekview .sc-event-time {
+  font-size: 50%;
+  right: 0;
+  left: 0;
+  padding: 10px;
+}
+.is-weekview.is-weekview .sc-event-list {
+  position: relative;
+}
+.is-weekview.is-weekview .sc-event-label {
+  display: none;
+}
+.is-weekview.is-weekview .sc-event {
   width: 19%;
   text-align: center;
   background: #f1f1f1;
@@ -96,40 +138,69 @@ body {
   box-sizing: border-box;
   padding: 0;
 }
-.scheduler.is-weekview .sc-event-content {
+.is-weekview.is-weekview .sc-event-content {
   margin: 10px 0;
 }
-.scheduler.is-weekview .sc-event-time-end {
+.is-weekview.is-weekview .sc-event-time-end {
   display: block;
   right: 5px;
   bottom: 5px;
   text-align: right;
   position: absolute;
 }
-.scheduler.is-weekview .sc-event-time-start {
+.is-weekview.is-weekview .sc-event-time-start {
   display: block;
   text-align: left;
   position: absolute;
   top: 5px;
   left: 5px;
 }
-.scheduler .sc-event-extra p {
+.is-weekview .sc-event-extra p {
+  margin: 0;
+  display: none;
+}
+.is-weekview .sc-event {
+  width: 19%;
+  text-align: center;
+  background: #f1f1f1;
+  position: absolute;
+  box-sizing: border-box;
+  padding: 0;
+}
+.is-weekview .sc-event-content {
+  margin: 10px 0;
+}
+.is-weekview .sc-event-time-end {
+  display: block;
+  right: 5px;
+  bottom: 5px;
+  text-align: right;
+  position: absolute;
+}
+.is-weekview .sc-event-time-start {
+  display: block;
+  text-align: left;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.sc-event-extra p {
   margin: 0;
 }
-.scheduler .sc-time-axis {
+.sc-time-axis {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
 }
-.scheduler .sc-time-axis-row {
+.sc-time-axis-row {
   box-sizing: border-box;
   border-bottom: 1px solid #ccc;
 }
-.scheduler .sc-event-extra {
+.sc-event-extra {
   margin-top: 10px;
   display: none;
 }
-.scheduler .sc-event.active .sc-event-extra {
+.sc-event.is-active .sc-event-extra {
   display: block;
 }
