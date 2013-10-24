@@ -1,0 +1,129 @@
+<html>
+	<head>
+		<title>scheduleJS</title>
+		<script src="jquery-1.8.0.min.js"></script>
+		<script src="schedule.js"></script>
+		<link href="css/schedule.css" rel="stylesheet" />
+		<style>
+			body {
+			  font-family: Helvetica;
+			}
+		</style>
+
+		<script>
+			var events;
+
+			events = [{
+			  	day: new Date("2012-10-01"),
+			  	label: "CUSTOM MONDAY",
+			  	list: [{
+			      title: "Engelska C",
+			      description: "etc. etc",
+			      start: new Date("2012-10-01 10:00"),
+			      end: new Date("2012-10-01 12:00")
+			    }, {
+			      title: "Matematik Klass A",
+			      description: "",
+			      start: new Date("2012-10-01 13:45"),
+			      end: new Date("2012-10-02 14:45")
+			    }, {
+			      title: "Matematik",
+			      description: "",
+			      start: new Date("2012-10-01 14:30"),
+			      end: new Date("2012-10-02 15:00")
+			    }, {
+			      title: "Svenska A",
+			      description: "etc. etc",
+			      start: new Date("2012-10-01 15:30"),
+			      end: new Date("2012-10-02 17:00")
+			    }]
+			  },
+			  {
+			  	day: new Date("2012-10-02"),
+			  	list: [{
+			      title: "Historia C",
+			      description: "Tag med böcker",
+			      start: new Date("2012-10-01 08:00"),
+			      end: new Date("2012-10-01 09:20")
+			    }, {
+			      title: "Matematik",
+			      description: "Samling i Aulan!",
+			      start: new Date("2012-10-01 12:45"),
+			      end: new Date("2012-10-02 14:00")
+			    }, {
+			      title: "Matematik",
+			      description: null,
+			      start: new Date("2012-10-01 16:30"),
+			      end: new Date("2012-10-02 17:00")
+			    }]
+			  },
+			  {
+			  	day: new Date("2012-10-03"),
+			  	list:[{
+			      title: "Historia C",
+			      description: "",
+			      start: new Date("2012-10-01 08:00"),
+			      end: new Date("2012-10-01 09:20")
+			    }, {
+			      title: "Geografi",
+			      description: false,
+			      start: new Date("2012-10-01 13:30"),
+			      end: new Date("2012-10-02 17:00")
+			    }]
+			  },
+			  {
+			  	day: new Date("2012-10-04"),
+			  	list: [{
+			      title: "Historia C",
+			      description: false,
+			      start: new Date("2012-10-01 08:10"),
+			      end: new Date("2012-10-01 09:20")
+			    }, {
+			      title: "Matematik",
+			      description: "Ny lärare: Mats Eriksson",
+			      start: new Date("2012-10-01 16:30"),
+			      end: new Date("2012-10-02 17:00")
+			    }]
+			  },
+			  {
+			  	day: new Date("2012-10-05"),
+			  	list: [{
+			      title: "Religion AB",
+			      description: "etc. etc",
+			      start: new Date("2012-10-01 08:00"),
+			      end: new Date("2012-10-01 09:20")
+			    }, {
+			      title: "Matematik",
+			      description: "etc. etc",
+			      start: new Date("2012-10-01 11:45"),
+			      end: new Date("2012-10-02 14:00")
+			    }, {
+			      title: "Matematik",
+			      description: null,
+			      start: new Date("2012-10-01 16:30"),
+			      end: new Date("2012-10-02 17:00")
+			    }]
+			  }
+			]
+
+			$(document).ready(function() {
+				var $schedule = $("#schedule").scheduler({
+					events: events
+				});
+
+				$("body").on("click", ".btn-change-view", function() {
+      		var view = ($(this).data("view") == "week" ? "day" : "week")
+          $(this).data("view", view)
+
+          $schedule.scheduler("setViewLayout", view)
+          //$schedule.scheduler("appendEvents", settings.events)
+      	});
+			});
+
+		</script>
+	</head>
+	<body>
+		<button class=btn-change-view>Switch view</button>
+		<div id="schedule"></div>
+	</body>
+</html>
