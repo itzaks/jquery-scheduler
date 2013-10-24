@@ -11,9 +11,6 @@
 
     return s
 
-  Date.prototype.getFullMinutes = () ->
-    return (this.getHours() * 60) + this.getMinutes()
-
   methods = 
     init: (options) ->
       settings = $.extend(
@@ -91,17 +88,20 @@
               $this = $(this)
               event = $this.data("sc-event")
 
-              eventStart = event.start.getFullMinutes()
-              eventEnd = event.end.getFullMinutes()
+              getMinutes = (time) -> 
+                [hours, minutes] = time.split ':'
+                res = (hours * 60) + +minutes
 
+              start = getMinutes event.start
+              end = getMinutes event.end
               dayStart = settings.startTime * 60
 
               #get top placement (schedule start time - event start time) * minute to pixel-ratio
-              topPlacement = (eventStart - dayStart) * settings.pixelRatio
+              topPlacement = (start - dayStart) * settings.pixelRatio
 
               $this.css
                 top: topPlacement
-                height: (eventEnd - eventStart) * settings.pixelRatio
+                height: (end - start) * settings.pixelRatio
         else 
           this
             .removeClass("is-weekview")

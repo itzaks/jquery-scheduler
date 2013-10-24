@@ -14,9 +14,6 @@
       }
       return s;
     };
-    Date.prototype.getFullMinutes = function() {
-      return (this.getHours() * 60) + this.getMinutes();
-    };
     methods = {
       init: function(options) {
         var settings;
@@ -97,16 +94,21 @@
         switch (view) {
           case "week":
             return this.removeClass("is-dayview").addClass("is-weekview").find(".sc-event").each(function() {
-              var $this, dayStart, event, eventEnd, eventStart, topPlacement;
+              var $this, dayStart, end, event, getMinutes, start, topPlacement;
               $this = $(this);
               event = $this.data("sc-event");
-              eventStart = event.start.getFullMinutes();
-              eventEnd = event.end.getFullMinutes();
+              getMinutes = function(time) {
+                var hours, minutes, res, _ref;
+                _ref = time.split(':'), hours = _ref[0], minutes = _ref[1];
+                return res = (hours * 60) + +minutes;
+              };
+              start = getMinutes(event.start);
+              end = getMinutes(event.end);
               dayStart = settings.startTime * 60;
-              topPlacement = (eventStart - dayStart) * settings.pixelRatio;
+              topPlacement = (start - dayStart) * settings.pixelRatio;
               return $this.css({
                 top: topPlacement,
-                height: (eventEnd - eventStart) * settings.pixelRatio
+                height: (end - start) * settings.pixelRatio
               });
             });
           default:
