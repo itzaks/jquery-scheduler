@@ -1,128 +1,127 @@
 <html>
-	<head>
-		<title>scheduleJS</title>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
-		<script src="schedule.js"></script>
-		<link href="schedule.css" rel="stylesheet" />
-		<style>
-			body {
-			  font-family: Helvetica;
-			}
-		</style>
+  <head>
+    <title>scheduleJS</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
+    <script src="schedule.js"></script>
+    <link href="schedule.css" rel="stylesheet" />
+    <style>
+      body {
+        font-family: Helvetica;
+      }
+    </style>
 
-		<script>
-			var events;
+    <script>
+      var events;
 
-			events = [{
-			  	day: new Date("2012-10-01"),
-			  	label: function() { return "Custom <em>monday</em> label &ndash; " + this.day.getDate() + "/" + this.day.getMonth()},
-			  	list: [{
-			      title: "English",
-			      description: "Speak the language",
-			      start: "10:00",
-			      end: "12:00"
-			    }, {
-			      title: "Math",
-			      description: "Learn about numbers ad infinitum",
-			      start: "13:45",
-			      end: "14:45"
-			    }, {
-			      title: "Math",
-			      description: "What is a sine wave really?",
-			      start: "14:30",
-			      end: "15:00"
-			    }, {
-			      title: "Geometry",
-			      description: "Spheres spheres spheres. And spirals.",
-			      start: "15:30",
-			      end: "17:00"
-			    }]
-			  },
-			  {
-			  	day: new Date("2012-10-02"),
-			  	list: [{
-			      title: "History",
-			      description: "This is only his story.",
-			      start: "08:00",
-			      end: "09:20"
-			    }, {
-			      title: "Math",
-			      description: "See you at noon.",
-			      start: "12:45",
-			      end: "14:00"
-			    }, {
-			      title: "Philosophy",
-			      description: "Get inspired. Think for yourself.",
-			      start: "16:30",
-			      end: "17:00"
-			    }]
-			  },
-			  {
-			  	day: new Date("2012-10-03"),
-			  	list:[{
-			      title: "Religion",
-			      description: "Search within.",
-			      start: "08:00",
-			      end: "09:20"
-			    }, {
-			      title: "Psychology",
-			      description: "All is mind.",
-			      start: "13:30",
-			      end: "17:00"
-			    }]
-			  },
-			  {
-			  	day: new Date("2012-10-04"),
-			  	list: [{
-			      title: "History",
-			      description: false,
-			      start: "08:10",
-			      end: "09:20"
-			    }, {
-			      title: "P.E",
-			      description: "Work yo' body.",
-			      start: "16:30",
-			      end: "17:00"
-			    }]
-			  },
-			  {
-			  	day: new Date("2012-10-05"),
-			  	list: [{
-			      title: "Arts",
-			      description: "Put yourself on paper",
-			      start: "08:00",
-			      end: "09:20"
-			    }, {
-			      title: "Music",
-			      description: "The universal language",
-			      start: "11:45",
-			      end: "14:00"
-			    }, {
-			      title: "Science",
-			      description: "Study yourself",
-			      start: "16:30",
-			      end: "17:00"
-			    }]
-			  }
-			]
+      events = [{
+        day: new Date("2012-10-01"),
+        label: function() { return "Custom <em>monday</em> label &ndash; " + this.day.getDate() + "/" + this.day.getMonth()},
+        list: [{
+          title: "English",
+          description: "Speak the language",
+          start: "10:00",
+          end: "12:00"
+        }, {
+          title: "Math",
+          description: "Learn about numbers ad infinitum",
+          start: "13:45",
+          end: "14:45"
+        }, {
+          title: "Math",
+          description: "What is a sine wave really?",
+          start: "14:30",
+          end: "15:00"
+        }, {
+          title: "Geometry",
+          description: "Spheres spheres spheres. And spirals.",
+          start: "15:30",
+          end: "17:00"
+        }]
+      },
+      {
+        day: new Date("2012-10-02"),
+        list: [{
+          title: "History",
+          description: "This is only his story.",
+          start: "08:00",
+          end: "09:20"
+        }, {
+          title: "Math",
+          description: "See you at noon.",
+          start: "12:45",
+          end: "14:00"
+        }, {
+          title: "Philosophy",
+          description: "Get inspired. Think for yourself.",
+          start: "16:30",
+          end: "17:00"
+        }]
+      },
+      {
+        day: new Date("2012-10-03"),
+        list:[{
+          title: "Religion",
+          description: "Search within.",
+          start: "08:00",
+          end: "09:20"
+        }, {
+          title: "Psychology",
+          description: "All is mind.",
+          start: "13:30",
+          end: "17:00"
+        }]
+      },
+      {
+        day: new Date("2012-10-04"),
+        list: [{
+          title: "History",
+          description: false,
+          start: "08:10",
+          end: "09:20"
+        }, {
+          title: "P.E",
+          description: "Work yo' body.",
+          start: "16:30",
+          end: "17:00"
+        }]
+      },
+      {
+        day: new Date("2012-10-05"),
+        list: [{
+          title: "Arts",
+          description: "Put yourself on paper",
+          start: "08:00",
+          end: "09:20"
+        }, {
+          title: "Music",
+          description: "The universal language",
+          start: "11:45",
+          end: "14:00"
+        }, {
+          title: "Science",
+          description: "Study yourself",
+          start: "16:30",
+          end: "17:00"
+        }]
+      }]
 
-			$(document).ready(function() {
-				var $schedule = $("#schedule").scheduler({
-					events: events
-				});
+      $(document).ready(function() {
+        var $schedule = $("#schedule").scheduler({
+          events: events
+        });
 
-				$("body").on("click", ".btn-change-view", function() {
-      		var view = ($(this).data("view") == "week" ? "day" : "week")
+        $("body").on("click", ".btn-change-view", function() {
+          var view = ($(this).data("view") == "week" ? "day" : "week")
           $(this).data("view", view)
 
           $schedule.scheduler("setViewLayout", view)
-      	});
-			});
+        });
+      });
 
-		</script>
-	</head>
-	<body>
-		<button class=btn-change-view>Switch view</button>
-		<div id="schedule"></div>
-	</body>
+    </script>
+  </head>
+  <body>
+    <button class=btn-change-view>Switch view</button>
+    <div id="schedule"></div>
+  </body>
 </html>
