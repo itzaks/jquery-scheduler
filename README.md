@@ -1,7 +1,9 @@
 #jQuery Scheduler
 
 Lightweight schedule with vertical and horizontal format.
-Easily customizable.
+Easily customizable. 
+
+Demo at: http://itzaks.github.io/jquery-scheduler/
 
 ##Example
     var events = [
