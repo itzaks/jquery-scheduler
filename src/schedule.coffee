@@ -30,15 +30,10 @@
       @each ->
         $this = $(this)
         $this.data("sc-settings", settings)
-        $this.addClass("scheduler").html("
-          <div class='sc-content #{settings.contentClass}'>
-            <ul class=sc-event-list></ul>
-          </div>
-        ")
+        $this.addClass("scheduler").html "<div class='sc-content #{settings.contentClass}'><ul class=sc-event-list></ul></div>"
 
         $ul = $this.find(".sc-event-list")
-        $ul.on "click", "li", ->
-          $(this).toggleClass("is-active")
+        $ul.on "click", "li", -> $(this).toggleClass("is-active")
 
         $this.scheduler("appendEvents", settings.events)
         $this.scheduler("setViewLayout", "day")
@@ -50,40 +45,36 @@
       settings = $this.data("sc-settings")
 
       for index, day of events
+
         date = day.day
         dayName = mapDayName(date.getDay())
         dayDate = date.getDate()
         monthName = date.getMonth()
         dayNameLower = dayName.toLowerCase()
+        label = switch (typeof day.label).toLowerCase()
+          when "string" then day.label
+          when "function" then day.label()
+          else "#{ dayName } - #{ dayDate }/#{ monthName }"
 
-        label = day.label or "#{dayName} - #{dayDate}/#{monthName}" 
 
-        $ul.append("<li class='sc-event-label #{settings.dayClass}'>#{label}</li>")
+        $ul.append("<li class='sc-event-label #{ settings.dayClass }'>#{ label }</li>")
 
         for _index, lesson of day.list
-          startDate = lesson.start.getHours().padZero() + ":" + lesson.start.getMinutes().padZero()
-          endDate = lesson.end.getHours().padZero() + ":" + lesson.end.getMinutes().padZero()
-          title = lesson.title
-          description = lesson.description or ""
-          descriptionClass = if description then "sc-has-description" else ""
-
-          $event = $("
-            <li class='sc-event #{settings.lectionClass} sc-event-#{dayNameLower} #{descriptionClass}'>
-              <div class=sc-event-time>
-                <div class='sc-event-time-start'>#{startDate}</div>
-                <div class='sc-event-time-end'>#{endDate}</div>
+          $event = $("<li class='sc-event #{ settings.lectionClass } sc-event-#{ dayNameLower } #{ if lesson.description then "sc-has-description" else "" }'>
+            <div class='sc-event-time'>
+              <div class='sc-event-time-start'>#{ lesson.start }</div>
+              <div class='sc-event-time-end'>#{ lesson.end }</div>
+            </div>
+            <div class='sc-event-content'>
+              <strong>#{ lesson.title }</strong>
+              <div class='sc-event-extra'>
+                <p>#{ lesson.description }</p>
               </div>
-              <div class='sc-event-content'>
-                <strong>#{title}</strong>
-                <div class='sc-event-extra'>
-                  <p>#{description}</p>
-                </div>
-              </div>
-            </li>
-          ")
+            </div>
+          </li>")
 
-          $event.data("sc-event", lesson)
-          $ul.append($event)
+          $event.data "sc-event", lesson
+          $ul.append $event
 
     #setViewLayout
     setViewLayout : (view = "day") ->
@@ -135,8 +126,6 @@
       #timespan 
       timespan = endTime - startTime
 
-      console.log timespan, startTime, endTime, settings.startTime
-
         #720 minutes span
 
       #divide it to time-rows
@@ -152,8 +141,6 @@
         #generate time
         hour = Math.floor((startTime + currentRow * settings.minuteInterval) / 60).padZero()
         minute = ((startTime + currentRow * settings.minuteInterval) % 60).padZero()
-
-        console.log currentRow, hour
 
         $("<li class=sc-time-axis-row>#{hour}:#{minute}</li>").css("height", rowHeight)
 
