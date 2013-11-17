@@ -144,9 +144,12 @@
       }
     };
     mapDayName = function(day) {
-      var days;
-      days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
-      return days[day - 1];
+      var days, result="";
+      days = ["Sunday","Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+      if (day >=0 && day <= 6){
+        result =  days[day];
+      }
+      return result;
     };
     return $.fn.scheduler = function(method) {
       if (methods[method]) {
